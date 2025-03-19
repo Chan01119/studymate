@@ -2,13 +2,13 @@ package org.codenova.studymate.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
-@ToString
-public class Avatar {
+public class LoginLog {
     private int id;
-    private String name;
-    private String imageUrl;
+    private String userId;
+    private LocalDateTime loginAt;
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studyMember">
+    <insert id="createApproved" parameterType="studyMember">
+        insert into study_members (user_id, group_id, role, applied_at, joined_at)
+        values
+        (#{userId}, #{groupId}, #{role}, now(), now() )
+    </insert>
+    <insert id="createPending" parameterType="studyMember">
+        insert into study_members (user_id, group_id, role, applied_at)
+        values
+        (#{userId}, #{groupId}, #{role}, now() )
+    </insert>
+    <update id="updateJoinedAtById" parameterType="int">
+        update study_members set joined_at = now() where id= #{id}
+    </update>
+
+</mapper>
