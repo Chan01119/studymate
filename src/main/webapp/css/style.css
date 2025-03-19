@@ -1,12 +1,179 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
-* {
-        font-family: "Orbit", sans-serif;
-        font-weight: 400;
-        font-style: normal;
 
+* {
+    font-family: "Orbit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    box-sizing: border-box;
+    color : #444;
+
+}
+a {
+    text-decoration: none;
 }
 
 body {
     margin: 0;
+
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.index-header div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.index-header a {
+    font-size: 0.85em;
+}
+
+.index-header button {
+    background-color: #333;
+    color: #eee;
+    padding: 8px 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.index-header button:hover {
+    background-color: #eee;
+    color: #333;
+}
+
+.main {
+    display: flex;
+    max-width: 1000px;
+    margin: auto;
+    align-items: center;
+}
+
+.auth-header {
+    max-height: 70px;
+    padding: 5px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+    text-align: center;
+}
+
+.auth-main {
+    max-width: 400px;
+    padding: 0px 15px;
+    margin: 70px auto;
+    text-align: center;
+}
+
+.auth-input-div {
+    padding: 10px 0px;
+    margin-top: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+.auth-input {
+    width: 100%;
+    height: 36px;
+    border: 0;
+    font-size: 1.5em;
+}
+
+.auth-input:focus {
+    outline: none;
+}
+
+.album {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.album-item {
+    width: calc((90%) / 3);
+    height: 100px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, .08);
+}
+
+.password-wrapper {
+    position: relative; /* 아이콘 배치를 위해 */
+    display: inline-block; /* input과 아이콘을 한 줄에 */
+    width: 100%; /* 부모 요소에 맞게 너비 조정 */
+}
+
+.password-wrapper input {
+    width: calc(100% - 30px); /* 아이콘 공간 확보 */
+    padding-right: 30px; /* 아이콘과 텍스트 겹침 방지 */
+    box-sizing: border-box; /* 패딩 포함 너비 계산 */
+}
+
+.password-toggle-icon {
+    position: absolute; /* input 필드 위에 배치 */
+    right: 5px; /* 오른쪽 끝에서 약간 띄움 */
+    top: 50%; /* 세로 중앙 정렬 */
+    transform: translateY(-50%); /* 세로 중앙 정렬 미세 조정 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
+
+.password-toggle-icon img {
+    height: 24px; /* 이미지 크기 조정 */
+    width: 24px;
+    vertical-align: middle;
+}
+
+.my-main {
+    display: flex;
+    gap : 30px;
+    padding : 40px 0px;
+}
+.my-main-nav   {
+    list-style: none;
+    padding : 20px;
+    margin: 0px;
+    line-height: 30px;
+    background-color: #ffffff;
+}
+.my-main-nav li   {
+    padding :8px;
+    cursor: pointer;
+    font-size: 0.85em;
+}
+
+.my-main-nav .active {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+.my-main .content {
+    padding : 20px;
+    flex : 1;
+    background-color: #ffffff;
+}
+.my-main .content > * {
+    border-bottom:  1px solid rgba(0,0,0,.08);
+}
+.my-main .content ul {
+    list-style: none;
+    line-height: 40px;
+}
+.my-main .content  li {
+    display: flex;
+    gap : 20px;
+    font-size : 0.8em;
+    align-items: baseline;
+}
+.my-main .content  span {
+    font-size: 1.5em;
 }
