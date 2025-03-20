@@ -23,7 +23,8 @@
 </div>
 <div >
     <div class="study-main wrap">
-        <form style="padding: 20px 0px;">
+        <form style="padding: 20px 0px;" method="post"
+              action="${pageContext.request.contextPath}/study/create/verify">
             <label class="label">스터디 이름</label>
             <div style="padding:8px 0px" class="bottom-border-div">
                 <input type="text" placeholder="스터디 이름 입력" class="input-text" name="name"/>
@@ -45,7 +46,7 @@
                 </div>
                 <div>
                     <label style="display: block; font-weight:bold">
-                    <input type="radio" name="type" value="비공개"/>
+                        <input type="radio" name="type" value="비공개"/>
                         비공개 스터디
                     </label>
                     <p>

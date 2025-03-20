@@ -12,4 +12,11 @@
         update study_groups set member_count = member_count + 1 where id = #{id}
     </update>
 
+    <select id="findByNameLikeOrGoalLike" parameterType="string" resultType="studyGroup">
+        select * from study_groups where name like #{word} or goal like #{word}
+    </select>
+
+    <select id="findById" parameterType="string" resultType="studyGroup">
+        select * from study_groups where id = #{id}
+    </select>
 </mapper>

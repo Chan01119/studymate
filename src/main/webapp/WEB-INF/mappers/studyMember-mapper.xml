@@ -17,4 +17,8 @@
         update study_members set joined_at = now() where id= #{id}
     </update>
 
+    <select id="findById" parameterType="string" resultType="studyMember">
+        select * from study_members where group_id = #{id}
+    </select>
+
 </mapper>
