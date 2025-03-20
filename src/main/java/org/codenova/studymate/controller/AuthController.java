@@ -59,18 +59,18 @@ public class AuthController {
                                     @RequestParam("password") String password,
                                     HttpSession session) {
 
-        User found = userRepository.findById(id);
-        if (found == null || !found.getPassword().equals(password)) {
+        User user = userRepository.findById(id);
 
-            return "auth/login/verify-failed";
-        } else {
+        if (user != null && user.getPassword().equals(password)) {
+
             userRepository.updateLoginCountByUserId(id);
             loginLogRepository.create(id);
-            session.setAttribute("user", found);
-            LoginLog latest = loginLogRepository.findLatestByUserId(id);
-            System.out.println(latest);
+            session.setAttribute("user", user);
+            session.setAttribute("userAvatar", avatarRepository.findById(user.getAvatarId()));
+
             return "redirect:/index";
         }
+        return "auth/login/verify-failed";
     }
 
     @RequestMapping("/logout")
