@@ -21,4 +21,7 @@
         select * from study_members where group_id = #{id}
     </select>
 
+    <select id="findByUserIdAndGroupId" resultType="studyMember" parameterType="hashmap">
+        select * from study_members where user_id = #{userId} and group_id = #{groupId}
+    </select>
 </mapper>
