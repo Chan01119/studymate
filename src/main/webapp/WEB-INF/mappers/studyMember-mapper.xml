@@ -18,10 +18,18 @@
     </update>
 
     <select id="findById" parameterType="string" resultType="studyMember">
-        select * from study_members where group_id = #{id}
+        select * from study_members where user_id = #{id}
     </select>
 
     <select id="findByUserIdAndGroupId" resultType="studyMember" parameterType="hashmap">
         select * from study_members where user_id = #{userId} and group_id = #{groupId}
     </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from study_members where id = f#{id}
+    </delete>
+
+    <delete id="deleteByGroupId" parameterType="string">
+        delete from study_members where group_id = #{groupId}
+    </delete>
 </mapper>

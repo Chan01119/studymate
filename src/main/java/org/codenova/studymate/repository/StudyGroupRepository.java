@@ -21,12 +21,20 @@ public class StudyGroupRepository {
         return sqlSessionTemplate.update("studyGroup.addMemberCountById", id);
     }
 
+    public int subtractMemberCountById(String id) {
+        return sqlSessionTemplate.update("studyGroup.subtractMemberCountById", id);
+    }
+
     public List<StudyGroup> findByNameLikeOrGoalLike(String word){
         return sqlSessionTemplate.selectList("studyGroup.findByNameLikeOrGoalLike", word);
     }
 
     public StudyGroup findById(String id) {
         return sqlSessionTemplate.selectOne("studyGroup.findById", id);
+    }
+
+    public int deleteById(String id) {
+        return sqlSessionTemplate.delete("studyGroup.deleteById", id);
     }
 
 }

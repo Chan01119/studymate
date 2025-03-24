@@ -16,5 +16,5 @@ public class StudyMember {
     private String groupId;
     private String role;
     private LocalDateTime appliedAt;
-    private LocalDateTime joindAt;
+    private LocalDateTime joinedAt;
 }

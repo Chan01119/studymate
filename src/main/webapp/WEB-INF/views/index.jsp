@@ -21,12 +21,14 @@ background-color: #afafaf; color:white" placeholder="스터디 검색" value="${
         </a>
     </div>
 </div>
-<div class="main">
-    <div class="w-50">
+<div style="width:1000px; display: flex; margin: auto; align-items: center">
+    <div style="width: 50%; padding : 20px;">
         <img src="${pageContext.request.contextPath}/image/logo.png" class="w-100"/>
     </div>
-    <h1>공부가 쉬워진다!<br/>
-        우리끼리 스터디메이트</h1>
+    <div style="width: 50%; padding : 20px;">
+        <h1>공부가 쉬워진다!<br/>
+            우리끼리 스터디메이트</h1>
+    </div>
 </div>
 <div>
 

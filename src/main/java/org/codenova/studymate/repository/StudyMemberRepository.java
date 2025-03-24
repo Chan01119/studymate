@@ -33,4 +33,12 @@ public class StudyMemberRepository {
         return sqlSessionTemplate.selectOne("studyMember.findByUserIdAndGroupId", params);
     }
 
+    public int deleteById(int id) {
+        return sqlSessionTemplate.delete("studyMember.deleteById", id);
+    }
+
+    public int deleteByGroupId(String groupId) {
+        return sqlSessionTemplate.delete("studyMember.deleteByGroupId", groupId);
+    }
+
 }
