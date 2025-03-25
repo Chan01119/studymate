@@ -2,6 +2,7 @@ package org.codenova.studymate.repository;
 
 import lombok.AllArgsConstructor;
 import org.codenova.studymate.model.entity.User;
+import org.codenova.studymate.model.query.UserWithAvatar;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +21,9 @@ public class UserRepository {
 
     public int updateLoginCountByUserId(String id) {
         return template.update("user.updateLoginCountByUserId", id);
+    }
+
+    public UserWithAvatar findWithAvatarById(String id) {
+        return template.selectOne("user.findWithAvatarById", id);
     }
 }

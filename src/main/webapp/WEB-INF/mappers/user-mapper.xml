@@ -13,4 +13,10 @@
     <update id="updateLoginCountByUserId" parameterType="string">
         update users set login_count= login_count + 1 where id=#{id}
     </update>
+
+    <select id="findWithAvatarById" parameterType="string" resultType="userWithAvatar">
+        select users.*, avatars.name as avatar_name, avatars.image_url as avatar_url
+            from (users join avatars on users.                    avatar_id = avatars.id)
+        where users.id = #{id}
+    </select>
 </mapper>

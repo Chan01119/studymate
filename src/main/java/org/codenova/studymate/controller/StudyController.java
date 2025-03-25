@@ -2,6 +2,7 @@ package org.codenova.studymate.controller;
 
 import lombok.AllArgsConstructor;
 import org.codenova.studymate.model.entity.*;
+import org.codenova.studymate.model.query.UserWithAvatar;
 import org.codenova.studymate.model.vo.PostMeta;
 import org.codenova.studymate.model.vo.StudyGroupWithCreator;
 import org.codenova.studymate.repository.*;
@@ -26,6 +27,13 @@ public class StudyController {
     private AvatarRepository avatarRepository;
     private PostReactionRepository postReactionRepository;
 
+
+    @ModelAttribute("user")
+    public UserWithAvatar addUser(@SessionAttribute("user") UserWithAvatar user) {
+        System.out.println("addUser...");
+        return user;
+    }
+
     @RequestMapping("/create")
     public String createHandle() {
         return "study/create";
@@ -34,7 +42,7 @@ public class StudyController {
     @Transactional
     @RequestMapping("/create/verify")
     public String creatVerifyHandle(@ModelAttribute StudyGroup studyGroup,
-                                    @SessionAttribute("user") User user) {
+                                    @SessionAttribute("user") UserWithAvatar user) {
         String randomId = UUID.randomUUID().toString().substring(24);
 
         studyGroup.setId(randomId);
@@ -84,7 +92,7 @@ public class StudyController {
     }
 
     @RequestMapping("/{id}")
-    public String viewHandle(@PathVariable("id") String id, Model model, @SessionAttribute("user") User user) {
+    public String viewHandle(@PathVariable("id") String id, Model model, @SessionAttribute("user") UserWithAvatar user) {
         //System.out.println(id);
 
         StudyGroup group = studyGroupRepository.findById(id);
@@ -137,7 +145,7 @@ public class StudyController {
     @Transactional
     @RequestMapping("/{id}/join")
     public String joinHandle(@PathVariable("id") String id,
-                             Model model, @SessionAttribute("user") User user) {
+                             Model model, @SessionAttribute("user") UserWithAvatar user) {
         boolean r = false;
         for (StudyMember member : studyMemberRepository.findById(id)) {
             if (member.getUserId().equals(user.getId())) {
@@ -165,7 +173,7 @@ public class StudyController {
 
     //탈퇴 요청 처리 핸들러
     @RequestMapping("/{group}/leave")
-    public String leaveHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") User user, Model model) {
+    public String leaveHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") UserWithAvatar user, Model model) {
         String userId = user.getId();
         Map map = Map.of("groupId", groupId, "userId", userId);
 
@@ -179,7 +187,7 @@ public class StudyController {
 
     // 신청 철회 요청 핸들러
     @RequestMapping("/{groupId}/cancel")
-    public String cancelHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") User user, Model model) {
+    public String cancelHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") UserWithAvatar user, Model model) {
         String userId = user.getId();
         Map map = Map.of("groupId", groupId, "userId", userId);
 
@@ -193,7 +201,7 @@ public class StudyController {
 
     @Transactional
     @RequestMapping("/{groupId}/remove")
-    public String removeHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") User user) {
+    public String removeHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") UserWithAvatar user) {
         StudyGroup studyGroup = studyGroupRepository.findById(groupId);
 
         if (studyGroup != null && studyGroup.getCreatorId().equals(user.getId())) {
@@ -208,7 +216,7 @@ public class StudyController {
     @RequestMapping("/{groupId}/approve")
     public String approveHandle(@PathVariable("groupId") String groupId,
                                 @RequestParam("targetUserId") String targetUserId,
-                                @SessionAttribute("user") User user) {
+                                @SessionAttribute("user") UserWithAvatar user) {
 
         StudyGroup studyGroup = studyGroupRepository.findById(groupId);
 
@@ -231,7 +239,7 @@ public class StudyController {
     @RequestMapping("/{groupId}/post")
     public String postHandle(@PathVariable("groupId") String id,
                              @ModelAttribute Post post,
-                             @SessionAttribute("user") User user) {
+                             @SessionAttribute("user") UserWithAvatar user) {
         /*
          모델 attribute 로 파라미터는 받았을텐데, 빠진 정보들이 있을거임. 이걸 추가로 set  .
          postRepository를 이용해서 create 메서드 작성
@@ -247,7 +255,7 @@ public class StudyController {
 
     // 글에 감정 남기기 요청 처리 핸들
     @RequestMapping("/{groupId}/post/{postId}/reaction")
-    public String postReactionHandle(@ModelAttribute PostReaction postReaction, @SessionAttribute("user") User user) {
+    public String postReactionHandle(@ModelAttribute PostReaction postReaction, @SessionAttribute("user") UserWithAvatar user) {
         PostReaction found =
                 postReactionRepository.findByWriterIdAndPostId(Map.of("writerId", user.getId(), "postId", postReaction.getPostId()));
         if (found == null) {
