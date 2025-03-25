@@ -133,7 +133,7 @@ public class StudyController {
                     .writerName(userRepository.findById(post.getWriterId()).getName())
                     .writerAvatar(avatarRepository.findById(userRepository.findById(post.getWriterId()).getAvatarId()).getImageUrl())
                     .time(prettyTime.format(post.getWroteAt()))
-                    .reactions(postReactionRepository.findByPostId(post.getId()))
+                    .reactions(postReactionRepository.countFeelingByPostId(post.getId()))
                     .build();
             postMetas.add(cvt);
         }

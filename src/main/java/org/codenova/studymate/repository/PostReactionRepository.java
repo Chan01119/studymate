@@ -3,6 +3,7 @@ package org.codenova.studymate.repository;
 
 import lombok.AllArgsConstructor;
 import org.codenova.studymate.model.entity.PostReaction;
+import org.codenova.studymate.model.query.FeelingStats;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,6 +25,9 @@ public class PostReactionRepository {
 
     public PostReaction findByWriterIdAndPostId(Map map) {
         return sqlSessionTemplate.selectOne("postReaction.findByWriterIdAndPostId", map);
+    }
 
+    public List<FeelingStats> countFeelingByPostId(int postId) {
+        return sqlSessionTemplate.selectList("postReaction.countFeelingByPostId", postId);
     }
 }
